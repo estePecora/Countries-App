@@ -1,0 +1,35 @@
+.cardcontainer {
+    background-color: rgb(241, 241, 241);
+    display: flex;
+    justify-content: space-evenly;
+    width: 200px;
+    height: 250px;
+    margin: 20px;
+    border-radius: 20px;
+  
+}
+
+.innercontainer {
+    color:rgb(83, 83, 83);
+    padding: 30px;
+
+     
+}
+
+
+.flagImag {
+    max-width: 100px;
+    display: flex;
+    align-self: flex-start;
+}
+
+.textDiv {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+p {
+    margin-top: 2px;
+}

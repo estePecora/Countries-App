@@ -1,0 +1,14 @@
+.list {
+    color: rgb(70, 70, 114);
+}
+
+.cardContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 100%;
+}
