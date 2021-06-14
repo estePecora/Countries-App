@@ -1,28 +1,32 @@
 import React from 'react';
-// import { useSelector } from 'react-redux';
 import style from './CountryCard.module.css'
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 
-function CountryCard({flagImag, name, continent}) {
-    // const allCountries = useSelector(state => state.listOfCountries)
-   
+function CountryCard({id, flagImag, name, continent}) {
+   const idparam = id
+
     return (
         <div>
-            <div className={style.cardcontainer}>
             
-            <div className={style.innercontainer}>
-                
-                    <img src={flagImag} alt='Imag not found' className={style.flagImag}/>
-                    {/* <Link to={`/countries/${props.allCountries.id}`} >  </Link> */}
+            <div className={style.cardcontainer}>
                     
+                <div className={style.innercontainer}>
+                    
+                    <img src={flagImag} alt='Imag not found' className={style.flagImag}/>
+                
                     <div className={style.textDiv}>
-                      <h3>{name}</h3>
-                      <p>Continent: {continent}</p>
+                      
+                      <h3 className={style.titleStyle}>{name}</h3>
+                      <p className={style.textStyle}>Continent: {continent}</p>
+                      <Link to={`/countrydetail/${idparam}`} className={style.cardLinks}>
+                        <button className={style.infoButton}>More Info</button>
+                      </Link>
                     </div>
                     
-            </div>
-        </div>  
+                </div>
+            </div>  
+           
 
 
         </div>

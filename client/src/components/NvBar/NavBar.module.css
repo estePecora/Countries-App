@@ -3,7 +3,7 @@
     top: 0;
     left: 0;
     position: fixed;
-    background-color: #86868636;
+    background-color: rgb(51, 63, 73);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -14,7 +14,7 @@
 
 
 .navtitle {
-   color: #868686; 
+   color:grey;
    font-size: 15px;
    letter-spacing: 8px;
    width: 30%;
@@ -22,6 +22,17 @@
    align-items: center;
    
   
+}
+
+.navtitle a,
+.navtitle a:visited {
+    color: grey;
+    text-decoration: none;
+
+}
+.navtitle a:hover,
+.listitem a.active {
+    color: rgb(251, 251, 251);
 }
 
 
@@ -44,7 +55,7 @@
 }
 
 .listitem a {
-    color: #2a5279;
+    color: rgb(182, 182, 182);
     height: 100%;
     padding: 16px 10px;
     border-bottom: 4px solid transparent;

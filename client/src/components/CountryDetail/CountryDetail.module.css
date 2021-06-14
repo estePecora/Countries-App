@@ -1,0 +1,29 @@
+.detailContainer {
+    display: flex;
+    flex-direction: row;
+   
+    margin-top: 5%;
+}
+
+.imagDetailContainer {
+    background-repeat: no-repeat;
+    width: 50%;
+    min-height: 700px;
+}
+
+.flagimagStyle {
+    height: 700px;
+
+}
+
+.infoContainer {
+    background-color:rgb(248, 248, 248);
+    padding: 5%;
+    width: 40%;
+    text-align: left;
+  
+}
+
+.name {
+    font-size: 3rem;
+}

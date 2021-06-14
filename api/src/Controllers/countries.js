@@ -6,7 +6,7 @@ const axios = require('axios')
 
 
 const getAllCountries = async function getAllCountries (req, res) {
-    try {
+    try{
         const lista = await axios.get('https://restcountries.eu/rest/v2/all')
         lista.data.forEach( async (country) => {
             await Country.findOrCreate({
@@ -23,11 +23,10 @@ const getAllCountries = async function getAllCountries (req, res) {
             }) 
         })
         
-        Country.findAll({
+        return Country.findAll({
             limit: 10,
             include: Activity
             }).then(countries => res.json(countries))
-
     }
     catch (error) {
         res.send(error)
@@ -38,9 +37,14 @@ const getAllCountries = async function getAllCountries (req, res) {
 const getPagination = async function getPagination (req, res) {
     const page = parseInt(req.query.page)
     const limit = 10
-
-    countryList = await Country.findAll({limit:limit, offset: page*limit})    
-    return res.json(countryList)
+    
+    try{
+        countryList = await Country.findAll({limit:limit, offset: page*limit})    
+        return res.json(countryList)
+    } catch (error){
+        res.send(error)
+    }
+    
 }
 
 
@@ -48,8 +52,14 @@ const getPagination = async function getPagination (req, res) {
 const getCountriesById =  async function getCountriesById (req, res) {
     const countryId = req.params.id.toUpperCase()
    
-    countrySelected = await Country.findOne({where: { id: countryId} })
-    return res.json(countrySelected)
+    try {
+        countrySelected = await Country.findOne({where: { id: countryId} })
+        return res.json(countrySelected)
+    }
+    catch(error) {
+        res.send(error)
+    }
+
 
   
 }
@@ -57,9 +67,14 @@ const getCountriesById =  async function getCountriesById (req, res) {
 const getCountriesByName = async function getCountriesByName (req, res) {
     const { name } = req.query
    
-    countryFound = await Country.findAll({where: {name: {[Op.like]: '%'+name+'%'} }})
-    // countryFound = await Country.findAll({where: {name:name} })    
-    return res.json(countryFound)
+    try{
+        countryFound = await Country.findAll({where: {name: {[Op.like]: '%'+name+'%'} }})   
+        return res.json(countryFound)
+    }
+    catch(error) {
+        res.send(error)
+    }
+   
 }
 
 

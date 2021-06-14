@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import style  from './ActivityForm.module.css'
-import { connect } from 'react-redux'
+// import style  from './ActivityForm.module.css'
+// import { connect } from 'react-redux'
 
 export default function ActivityForm(props) {
-    const [localstate, setLocalstate] = useState({
-        activityname: "",
-        dificulty: "",
-        duration: "",
-        season: "",
-      })
+    // const [localstate, setLocalstate] = useState({
+    //     activityname: "",
+    //     dificulty: "",
+    //     duration: "",
+    //     season: "",
+    //   })
    
 
     // const handleChange = (event) => {

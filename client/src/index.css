@@ -6,10 +6,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color:rgb(53, 86, 114);
+  background-color: rgb(118, 131, 121);
   background-image: url("./images/landingphoto-1604537466573-5e94508fd243.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   height: 100%;
+ 
 
 }
 

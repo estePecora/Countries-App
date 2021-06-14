@@ -1,27 +1,37 @@
 import axios from 'axios'
 
 export const GET_COUNTRIES = 'GET_COUNTRIES'
-export const COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL'
+export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL'
 export const GET_ACTIVITY = 'GET_ACTIVITY'
 export const ACTIVITY_DETAIL = 'ACTIVITY_DETAIL'
 export const ADD_ACTIVITY = 'ADD_ACTIVITY'
+export const GET_COUNTRY_PAGES = 'GET_COUNTRY_PAGES'
 
 
+  export function getCountries() {
+      return (dispatch) => {
+        axios.get("http://localhost:3001/countries/countries")
+          .then(response => {
+            dispatch({ type: "GET_COUNTRIES", payload: response.data })
+          })
+      }
+    };
 
-export function getCountries() {
+  export function getCountryPages(pageNum) {
     return (dispatch) => {
-      axios.get("http://localhost:3001/countries/countries")
+      axios.get(`http://localhost:3001/countries/countries/page?page=${pageNum}`)
         .then(response => {
-          dispatch({ type: "GET_COUNTRIES", payload: response.data })
+          dispatch({ type: "GET_COUNTRY_PAGES", payload: response.data })
         })
     }
   };
+  
   
   export function getCountryDetail(id) {
     return (dispatch) => {
       axios.get(`http://localhost:3001/countries/${id}`)
         .then(response => {
-          dispatch({ type: "COUNTRY_DETAIL", payload: response.data })
+          dispatch({ type: "GET_COUNTRY_DETAIL", payload: response.data })
         })
     }
   };

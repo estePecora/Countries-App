@@ -6,12 +6,17 @@ export default function Landing() {
     return (
         <div>
             <div className={style.mainBox}>
-                <h1 className={style.mainTitle}>EPLORE THE WORLD THROUGH ADVENTURES</h1>
-                <Link to={"/home"}>
-                    <button className={style.imagButton}>ENTER</button>
-                </Link>
+                <div className={style.maintitleBox}>
+                    <h1 className={style.mainTitle}>EPLORE THE WORLD THROUGH ADVENTURES</h1>
+                </div>
+
+                <div className={style.buttoncontainer}>
+                    <Link to={"/home"}>
+                        <button className={style.imagButton}>START EXPLORING</button>
+                    </Link>
+                </div>
+                
             </div>
-            
         </div>
     )
 }
