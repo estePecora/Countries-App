@@ -4,7 +4,7 @@ const { Country } = require('../db')
 
 const postActivity = async function (req, res) {
     const { activityName, dificulty, duration, season, countries } = req.body
-
+    
     const newActivity = await Activity.findOrCreate({
             where: {
                 activityName,

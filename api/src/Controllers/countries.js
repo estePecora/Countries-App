@@ -25,7 +25,6 @@ const getAllCountries = async function getAllCountries (req, res) {
         
         return Country.findAll({
             limit: 10,
-            include: Activity
             }).then(countries => res.json(countries))
     }
     catch (error) {
@@ -56,9 +55,11 @@ const getCountriesById =  async function getCountriesById (req, res) {
     const countryId = req.params.id.toUpperCase()
    
     try {
-        countrySelected = await Country.findOne({where: { id: countryId} })
+        countrySelected = await Country.findOne({where: { id: countryId}, include: Activity })
         return res.json(countrySelected)
+        
     }
+    
     catch(error) {
         res.send(error)
     }

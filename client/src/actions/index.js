@@ -47,23 +47,14 @@ export const GET_COUNTRY_NAME = 'GET_COUNTRY_NAME'
   };
   
   export function addActivity(payload) {
-    // return(dispatch) => {
-    //   axios.post("http://localhost:3001/activities", payload)
-    //   .then (response => {
-    //     console.log(response)
-    //     dispatch ({
-    //       type: ADD_ACTIVITY,
-    //       payload: response.data
-    //     })
-    //     .catch(error => {
-    //       console.log(error);
-    //     })
-    //   })  
-    // }  
-    return {
-      type: ADD_ACTIVITY,
-      payload
-    }
+    console.log(payload)
+    return (dispatch) => {
+      axios.post("http://localhost:3001/activities", payload)
+      .then(response => {
+        dispatch({ type: ADD_ACTIVITY, payload: response.data })
+      })
+    }  
+    
   };
 
   export function getActivity(payload) {

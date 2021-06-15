@@ -1,65 +1,90 @@
 import React, {useState} from 'react';
-// import style  from './ActivityForm.module.css'
-// import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux';
+import { addActivity } from '../../actions/index'
+import style  from './ActivityForm.module.css'
 
-export default function ActivityForm(props) {
-    // const [localstate, setLocalstate] = useState({
-    //     activityname: "",
-    //     dificulty: "",
-    //     duration: "",
-    //     season: "",
-    //   })
-   
 
-    // const handleChange = (event) => {
-    //     setLocalstate({...localstate, [event.target.name]: event.target.value})
-    // }
+function ActivityForm() {
+    const countrynames = useSelector(state => state.listOfCountries)
+    const dispatch = useDispatch()
+    const [localstate, setLocalstate] = useState({
+        activityName: "",
+        dificulty: "",
+        duration: "",
+        season: "",
+        countries: []
+      })
+  
+      
+    function handleChange (event) {
+        setLocalstate({...localstate, [event.target.name]: event.target.value})
+    }
 
-    // const handleSubmit = (event) => {
-    //     event.preventDefault();
-    //     props.newActivity(localstate)
+    function handleChoices (event) {
+        setLocalstate({...localstate, [event.target.name]: localstate.countries.push(event.target.value) })
+    }
+
+    function handleReset() {
+        Array.from(document.querySelectorAll("input")).forEach(
+            input => (input.value = "")
+        )
+    }
+
+    function resetState() {
+        setLocalstate({
+            activityName: "",
+            dificulty: "",
+            duration: "",
+            season: "",
+            countries: []
+          })
+    }
+
+    function handleSubmit(event) {
+        event.preventDefault();
+        dispatch(addActivity(localstate))
+        handleReset()
+        resetState()
     
-    // }
+    }
 
 
     return (
-        <div><h1>FORM</h1></div>
+        <div>
         
-        // <div className={style.form}>
-        //     <h1>FORM</h1>
-        //     <form onSubmit={handleSubmit} >
-        //         <label>Name of the activity:</label>
-        //         <input onChange={handleChange} name="activityname"></input>
+            <div className={style.formContainer}>
+                <h1>ADD ACTIVITIES</h1>
+                <form onSubmit={handleSubmit} className={style.form} >
+                    <label>Name of the activity:</label>
+                    <input onChange={handleChange} name="activityName"></input>
 
-        //         <label>Dificulty:</label>
-        //         <input onChange={handleChange} name="dificulty"></input>
+                    <label>Dificulty:</label>
+                    <input onChange={handleChange} name="dificulty"></input>
 
-        //         <label>Duration:</label>
-        //         <input onChange={handleChange} name="duration"></input>
+                    <label>Duration:</label>
+                    <input onChange={handleChange} name="duration"></input>
 
-        //         <label>Season:</label>
-        //         <input onChange={handleChange} name="season"></input>
+                    <label>Season:</label>
+                    <input onChange={handleChange} name="season"></input>
 
-        //         {/* <label>Countries:</label>
-        //         <input onChange={handleChange} name="date"></input> */}
+                    <label>Countries:</label>
+                    <select name="countries" id="countries" >
+                        {countrynames.map(el => {
+                        return <option value={el.name} onClick={handleChoices}>{el.name}</option>
+                        })}    
+                    </select>
 
-        //         <button type='submit'>SUBMIT</button>
+                    <button type='submit'  className={style.submitButton}>SUBMIT</button>
 
-        //     </form>
+                </form>
+
+                
+            </div>
          
-        // </div>
+        </div>
     )
   
 };
 
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         newActivity: function(localstate) {
-//             dispatch(addActivity(localstate))
-//         }
-//     }
-// };
-  
-
-// export default connect(null, mapDispatchToProps)(ActivityForm);
+export default ActivityForm;

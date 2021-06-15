@@ -50,14 +50,17 @@ export function rootReducer (state = initialState, action) {
                     activityDetail: action.payload
                 }
         case ADD_ACTIVITY:
-                return(
-                    state.concat(
-                      { activityname: action.payload.activityname,
+                return{
+                    ...state,
+                    activitiesAdded: state.activitiesAdded.concat({ 
+                        activityname: action.payload.activityname,
                         dificulty: action.payload.dificulty,
                         duration: action.payload.duration,
-                        season: action.payload.season
+                        season: action.payload.season,
+                        countries: action.payload.countries,
                       })
-                )
+                    
+                }
                 
         default:
             return state;

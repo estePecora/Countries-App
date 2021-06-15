@@ -10,6 +10,8 @@ export default function CountryDetail() {
     const countryDetail= useSelector(state => state.countryDetail)
     const { id } = useParams()
 
+    // console.log(countryDetail.activities[0].season)
+
     useEffect(() => {
         dispatch(getCountryDetail(id))
     }, [dispatch] )
@@ -31,6 +33,12 @@ export default function CountryDetail() {
                     <p> Subregion: {countryDetail.subregion}</p>
                     <p>Area: {countryDetail.area}</p>
                     <p>Population: {countryDetail.population}</p>
+                    {/* {countryDetail.activities.map(act => {
+                        return <p>{act.dificulty}</p>})
+                    } */}
+
+                    
+                    
 
                 </div>     
                     
