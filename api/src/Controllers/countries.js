@@ -34,12 +34,15 @@ const getAllCountries = async function getAllCountries (req, res) {
         
 }
 
+
+
 const getPagination = async function getPagination (req, res) {
-    const page = parseInt(req.query.page)
-    const limit = 10
-    
     try{
-        countryList = await Country.findAll({limit:limit, offset: page*limit})    
+        const page = parseInt(req.query.page)
+        const limit = 10
+        const offset = page ? page*limit : 0;
+    
+        const countryList = await Country.findAll({limit:limit, offset: offset})    
         return res.json(countryList)
     } catch (error){
         res.send(error)
@@ -64,11 +67,12 @@ const getCountriesById =  async function getCountriesById (req, res) {
   
 }
 
+
 const getCountriesByName = async function getCountriesByName (req, res) {
-    const { name } = req.query
+    const countryname = req.params.name
    
     try{
-        countryFound = await Country.findAll({where: {name: {[Op.like]: '%'+name+'%'} }})   
+        countryFound = await Country.findAll({where: {name: {[Op.iLike]: '%'+countryname+'%'} }})   
         return res.json(countryFound)
     }
     catch(error) {
@@ -76,7 +80,6 @@ const getCountriesByName = async function getCountriesByName (req, res) {
     }
    
 }
-
 
 
 

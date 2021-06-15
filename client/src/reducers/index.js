@@ -1,11 +1,19 @@
-import { GET_COUNTRIES, GET_COUNTRY_PAGES, GET_COUNTRY_DETAIL, GET_ACTIVITY, ACTIVITY_DETAIL, ADD_ACTIVITY } from '../actions'
+import { GET_COUNTRIES, 
+        GET_COUNTRY_PAGES, 
+        GET_COUNTRY_DETAIL, 
+        GET_COUNTRY_NAME,
+        GET_ACTIVITY, 
+        ACTIVITY_DETAIL, 
+        ADD_ACTIVITY
+    } from '../actions'
 
 
 const initialState = {
     listOfCountries: [],
     countryDetail: [],
     activityDetail: [],
-    activitiesAdded: []
+    activitiesAdded: [],
+    currentPage: 0
 };
 
 export function rootReducer (state = initialState, action) {
@@ -21,11 +29,16 @@ export function rootReducer (state = initialState, action) {
                 ...state,
                 listOfCountries: action.payload
             }
-         case GET_COUNTRY_DETAIL:
+        case GET_COUNTRY_DETAIL:
             return{
                 ...state,
                 countryDetail: action.payload
             }
+        case GET_COUNTRY_NAME:
+            return{
+                ...state,
+                listOfCountries: action.payload
+            }     
         case GET_ACTIVITY:
             return{
                 ...state,

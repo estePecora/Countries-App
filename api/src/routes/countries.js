@@ -3,13 +3,13 @@ const { getAllCountries, getCountriesById, getCountriesByName, getPagination } =
 const router = Router();
 
 
-router.get('/countries', getAllCountries );
+router.get('/', getAllCountries );
 
-router.get('/countries/page', getPagination );
+router.get('/page', getPagination );
 
 router.get('/:id', getCountriesById );
 
-router.get('/', getCountriesByName );
+router.get('/name/:name', getCountriesByName );
 
 
 module.exports = router;

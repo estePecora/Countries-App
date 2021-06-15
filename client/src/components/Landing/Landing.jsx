@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getCountries } from '../../actions/index';
 import { Link } from 'react-router-dom';
 import style from './Landing.module.css'
 
 export default function Landing() {
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getCountries())    
+    }, [] )
+
+
     return (
         <div>
             <div className={style.mainBox}>

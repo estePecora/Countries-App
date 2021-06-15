@@ -1,0 +1,7 @@
+.botonesNextPrev {
+    border-style: hidden;
+    background-color: rgb(53, 86, 114);
+    color: rgb(197, 197, 197);
+    padding: 5px 30px 5px 30px;
+    letter-spacing: 5px;
+}
