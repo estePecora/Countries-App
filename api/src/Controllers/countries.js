@@ -1,4 +1,4 @@
-const { Op } = require('sequelize')
+const { Op, Sequelize } = require('sequelize')
 const { Country } = require('../db')
 const { Activity } = require('../db')
 const axios = require('axios')
@@ -37,7 +37,7 @@ const getAllCountries = async function getAllCountries (req, res) {
 
 const getPagination = async function getPagination (req, res) {
     try{
-        const page = parseInt(req.query.page)
+        let page = parseInt(req.query.page)
         const limit = 10
         const offset = page ? page*limit : 0;
     
@@ -48,7 +48,6 @@ const getPagination = async function getPagination (req, res) {
     }
     
 }
-
 
 
 const getCountriesById =  async function getCountriesById (req, res) {
@@ -83,6 +82,76 @@ const getCountriesByName = async function getCountriesByName (req, res) {
 }
 
 
+const orderCountries = async function orderCountries (req, res) {
+    try{
+    const type = req.params.type
+    const orderby = req.params.orderby.toUpperCase()
+    let page = parseInt(req.params.page)
+    const limit = 10
+    const offset = page ? page*limit : 0;
+
+    
+        orderedCountries = await Country.findAll({
+                order: [[type, orderby]],
+                limit: limit,
+                offset: offset
+            })   
+        return res.json(orderedCountries)
+    }
+    catch(error) {
+        res.send(error)
+    }  
+}
+ 
+
+
+const filterCountries = async function filterCountries (req, res) {
+    const { continent, activityName } = req.body 
+    
+    if (continent && activityName) {
+        try{ 
+            filtered = await Country.findAll({
+                where: {
+                 continent: continent
+                },
+                include: [{
+                    model: Activity,
+                    where: { activityName: activityName }
+                }]        
+            })   
+            return res.json(filtered)
+        }
+        catch(error) {
+            res.send(error)
+        } 
+
+    } else if (!activityName) {
+        try{
+            filtered = await Country.findAll({
+                    where: {continent: continent }
+                    })   
+            return res.json(filtered)
+        }
+        catch(error) {
+            res.send(error)
+        } 
+
+    } else {
+        try {
+            filtered = await Activity.findAll({
+                        where: {activityName: activityName }
+                    })   
+            return res.json(filtered)
+        }
+        catch(error) {
+            res.send(error)
+        } 
+        
+    }
+         
+};
+
+
 
 
 
@@ -90,6 +159,8 @@ module.exports = {
     getAllCountries,
     getCountriesById,
     getCountriesByName,
-    getPagination
+    getPagination,
+    orderCountries,
+    filterCountries
  
 }

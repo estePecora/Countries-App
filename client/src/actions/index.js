@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+export const SET_PAGE = 'SET_PAGE'
 export const GET_COUNTRIES = 'GET_COUNTRIES'
 export const GET_COUNTRY_DETAIL = 'GET_COUNTRY_DETAIL'
 export const GET_ACTIVITY = 'GET_ACTIVITY'
@@ -7,7 +8,14 @@ export const ACTIVITY_DETAIL = 'ACTIVITY_DETAIL'
 export const ADD_ACTIVITY = 'ADD_ACTIVITY'
 export const GET_COUNTRY_PAGES = 'GET_COUNTRY_PAGES'
 export const GET_COUNTRY_NAME = 'GET_COUNTRY_NAME'
+export const GET_ORDER = 'GET_ORDER'
 
+  export function setPage(payload) {
+    return { 
+      type: SET_PAGE, 
+      payload: payload 
+    }
+  };
 
   export function getCountries() {
       return (dispatch) => {
@@ -27,6 +35,15 @@ export const GET_COUNTRY_NAME = 'GET_COUNTRY_NAME'
     }
   };
 
+  export function getOrder(payload) {
+    console.log(payload)
+    return (dispatch) => {
+      axios.get(`http://localhost:3001/countries/countries/${payload.type}/${payload.orderby}/${payload.page}`)
+      .then(response => {
+        dispatch({ type: GET_ORDER, payload: response.data })
+      })
+    } 
+  };
 
   export function getCountryDetail(id) {
     return (dispatch) => {
@@ -56,6 +73,8 @@ export const GET_COUNTRY_NAME = 'GET_COUNTRY_NAME'
     }  
     
   };
+
+
 
   export function getActivity(payload) {
       return {

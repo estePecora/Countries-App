@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-// import { getCountryPages, getCountries } from '../../actions/index';
+// import { getCountryPages } from '../../actions/index';
 import CountryList from '../CountryList/CountryList'
 import BotonesNextPrev from '../BotonesNextPrev/BotonesNextPrev'
 import SearchBar from '../SearchBar/SearchBar'
+import Filters from '../Filters/Filters'
 import style from './Home.module.css'
 
 export default function Home() {
     // const dispatch = useDispatch()
     const countries = useSelector(state => state.listOfCountries)
+    const currentPage = useSelector(state => state.currentPage)
     
     // useEffect(() => {
-    //     dispatch(getCountries())    
+    //     dispatch(getCountryPages(currentPage))    
     // }, [dispatch] )
 
 
@@ -26,17 +28,22 @@ export default function Home() {
                         <p>Explore countries and their activities and decide wich will be your next destination.</p>
                     </div>
                 
-                    <h4>HERE GOES FILTER OPTIONS</h4>
                     <div>
-                        <SearchBar></SearchBar>
+                        <SearchBar/>
                     </div>
+
                     <div>
-                        <BotonesNextPrev></BotonesNextPrev>
+                        <Filters/>
+                    </div>
+
+            
+                    <div>
+                        <BotonesNextPrev/>
                     </div>
                 </div>
                 
                 <div className={style.listHomeContainer}>
-                    <CountryList></CountryList>
+                    <CountryList/>
                 </div>
 
             </div>
