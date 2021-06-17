@@ -5,7 +5,7 @@ const axios = require('axios')
 
 
 
-const getAllCountries = async function getAllCountries (req, res) {
+const getAPICountries = async function getAPICountries (req, res) {
     try{
         const lista = await axios.get('https://restcountries.eu/rest/v2/all')
         lista.data.forEach( async (country) => {
@@ -33,7 +33,15 @@ const getAllCountries = async function getAllCountries (req, res) {
         
 }
 
-
+const getAllCountries = async function getAllCountries (req, res) {
+    try{
+        const countryList = await Country.findAll({include: Activity})    
+        return res.json(countryList)
+    } catch (error){
+        res.send(error)
+    }
+    
+}
 
 const getPagination = async function getPagination (req, res) {
     try{
@@ -86,7 +94,7 @@ const orderCountries = async function orderCountries (req, res) {
     try{
     const type = req.params.type
     const orderby = req.params.orderby.toUpperCase()
-    let page = parseInt(req.params.page)
+    let page = parseInt(req.query.page)
     const limit = 10
     const offset = page ? page*limit : 0;
 
@@ -156,6 +164,7 @@ const filterCountries = async function filterCountries (req, res) {
 
 
 module.exports = {
+    getAPICountries,
     getAllCountries,
     getCountriesById,
     getCountriesByName,
