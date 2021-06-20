@@ -14,7 +14,7 @@ export default function NavBar() {
                     <ul className={style.list}>
                         <li className={style.listitem}>
                             <NavLink exact to="/home" >HOME</NavLink>
-                            <NavLink to="/countriesid" >COUNTRIES BY ID</NavLink>
+                            <NavLink to="/otherlist/filters/filter" >FILTER COUNTRIES</NavLink>
                             <NavLink to="/addactivities" >ADD ACTIVITIES</NavLink>
                             {/* <NavLink to="/activities" >SEARCH ACTIVITIES</NavLink> */}
                         </li>

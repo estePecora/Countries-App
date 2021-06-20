@@ -25,7 +25,7 @@ const getAPICountries = async function getAPICountries (req, res) {
         
         return Country.findAll({
             limit: 10,
-            }).then(countries => res.json(countries))
+            }).then(countries => res.status(200).json(countries))
     }
     catch (error) {
         res.send(error)
@@ -36,21 +36,7 @@ const getAPICountries = async function getAPICountries (req, res) {
 const getAllCountries = async function getAllCountries (req, res) {
     try{
         const countryList = await Country.findAll({include: Activity})    
-        return res.json(countryList)
-    } catch (error){
-        res.send(error)
-    }
-    
-}
-
-const getPagination = async function getPagination (req, res) {
-    try{
-        let page = parseInt(req.query.page)
-        const limit = 10
-        const offset = page ? page*limit : 0;
-    
-        const countryList = await Country.findAll({limit:limit, offset: offset})    
-        return res.json(countryList)
+        return res.status(200).json(countryList)
     } catch (error){
         res.send(error)
     }
@@ -63,7 +49,7 @@ const getCountriesById =  async function getCountriesById (req, res) {
    
     try {
         countrySelected = await Country.findOne({where: { id: countryId}, include: Activity })
-        return res.json(countrySelected)
+        return res.status(200).json(countrySelected)
         
     }
     
@@ -81,7 +67,12 @@ const getCountriesByName = async function getCountriesByName (req, res) {
    
     try{
         countryFound = await Country.findAll({where: {name: {[Op.iLike]: '%'+countryname+'%'} }})   
-        return res.json(countryFound)
+        if (countryFound.length !== 0) {
+            return res.status(200).json(countryFound)
+        } else { 
+            return res.status(404).send({message: "Country not found or does not exist"})
+        }
+        
     }
     catch(error) {
         res.send(error)
@@ -94,70 +85,78 @@ const orderCountries = async function orderCountries (req, res) {
     try{
     const type = req.params.type
     const orderby = req.params.orderby.toUpperCase()
-    let page = parseInt(req.query.page)
-    const limit = 10
-    const offset = page ? page*limit : 0;
-
     
         orderedCountries = await Country.findAll({
                 order: [[type, orderby]],
-                limit: limit,
-                offset: offset
             })   
-        return res.json(orderedCountries)
+        return res.status(200).json(orderedCountries)
     }
     catch(error) {
         res.send(error)
     }  
 }
- 
 
+//----------------- RUTAS PAGINADO Y FILTRADO --------------------------------
 
-const filterCountries = async function filterCountries (req, res) {
-    const { continent, activityName } = req.body 
+// const getPagination = async function getPagination (req, res) {
+//     try{
+//         let page = parseInt(req.query.page)
+//         const limit = 10
+//         const offset = page ? page*limit : 0;
     
-    if (continent && activityName) {
-        try{ 
-            filtered = await Country.findAll({
-                where: {
-                 continent: continent
-                },
-                include: [{
-                    model: Activity,
-                    where: { activityName: activityName }
-                }]        
-            })   
-            return res.json(filtered)
-        }
-        catch(error) {
-            res.send(error)
-        } 
+//         const countryList = await Country.findAll({limit:limit, offset: offset})    
+//         return res.json(countryList)
+//     } catch (error){
+//         res.send(error)
+//     }
+    
+// }
 
-    } else if (!activityName) {
-        try{
-            filtered = await Country.findAll({
-                    where: {continent: continent }
-                    })   
-            return res.json(filtered)
-        }
-        catch(error) {
-            res.send(error)
-        } 
+// const filterCountries = async function filterCountries (req, res) {
+//     const { continent, activityName } = req.body 
+    
+//     if (continent && activityName) {
+//         try{ 
+//             filtered = await Country.findAll({
+//                 where: {
+//                  continent: continent
+//                 },
+//                 include: [{
+//                     model: Activity,
+//                     where: { activityName: activityName }
+//                 }]        
+//             })   
+//             return res.json(filtered)
+//         }
+//         catch(error) {
+//             res.send(error)
+//         } 
 
-    } else {
-        try {
-            filtered = await Activity.findAll({
-                        where: {activityName: activityName }
-                    })   
-            return res.json(filtered)
-        }
-        catch(error) {
-            res.send(error)
-        } 
+//     } else if (!activityName) {
+//         try{
+//             filtered = await Country.findAll({
+//                     where: {continent: continent }
+//                     })   
+//             return res.json(filtered)
+//         }
+//         catch(error) {
+//             res.send(error)
+//         } 
+
+//     } else {
+//         try {
+//             filtered = await Activity.findAll({
+//                         where: {activityName: activityName }
+//                     })   
+//             return res.json(filtered)
+//         }
+//         catch(error) {
+//             res.send(error)
+//         } 
         
-    }
-         
-};
+//     }
+        
+// };
 
 
 
@@ -168,8 +167,7 @@ module.exports = {
     getAllCountries,
     getCountriesById,
     getCountriesByName,
-    getPagination,
     orderCountries,
-    filterCountries
+
  
 }

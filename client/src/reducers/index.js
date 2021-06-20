@@ -1,11 +1,13 @@
-import { SET_PAGE,
+import {
         GET_COUNTRIES, 
+        GET_ALL_COUNTRIES,
         GET_COUNTRY_PAGES, 
         GET_COUNTRY_DETAIL, 
         GET_COUNTRY_NAME,
-        GET_ACTIVITY, 
+        RESET_COUNTRY_NAME,
         GET_ORDER,
-        ACTIVITY_DETAIL, 
+        ERROR,
+        RESET_ERROR,
         ADD_ACTIVITY
     } from '../actions'
 
@@ -13,24 +15,24 @@ import { SET_PAGE,
 const initialState = {
     listOfCountries: [],
     countryDetail: [],
-    orderedCountries: [],
-    activityDetail: [],
+    countryByName: [],
     activitiesAdded: [],
-    currentPage: 0
+    setError: []
 };
 
 export function rootReducer (state = initialState, action) {
 
     switch (action.type) {
-        case SET_PAGE:
-            return{
-                ...state,
-                currentPage: action.payload
-            }
+       
         case GET_COUNTRIES:
             return{
                 ...state,
                 listOfCountries: action.payload
+            }
+        case GET_ALL_COUNTRIES:
+            return{
+                    ...state,
+                    listOfCountries: action.payload
             }
         case GET_COUNTRY_PAGES:
             return{
@@ -47,21 +49,16 @@ export function rootReducer (state = initialState, action) {
                 ...state,
                 listOfCountries: action.payload
             }  
+        case RESET_COUNTRY_NAME:
+            return{
+                ...state,
+                listOfCountries: action.payload
+            }  
         case GET_ORDER:
             return{
                 ...state,
-                orderedCountries: action.payload
+                listOfCountries: action.payload
             }   
-        case GET_ACTIVITY:
-            return{
-                ...state,
-                activities: action.payload
-            }
-        case ACTIVITY_DETAIL:
-                return{
-                    ...state,
-                    activityDetail: action.payload
-                }
         case ADD_ACTIVITY:
                 return{
                     ...state,
@@ -73,6 +70,16 @@ export function rootReducer (state = initialState, action) {
                         countries: action.payload.countries,
                       })
                     
+                }
+        case ERROR:
+                return{
+                    ...state,
+                    setError: action.payload
+                }
+        case RESET_ERROR:
+                return{
+                    ...state,
+                    setError: action.payload
                 }
                 
         default:

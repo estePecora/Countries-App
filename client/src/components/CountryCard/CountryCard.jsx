@@ -20,7 +20,7 @@ function CountryCard({id, flagImag, name, continent}) {
                       <h3 className={style.titleStyle}>{name}</h3>
                       <p className={style.textStyle}>Continent: {continent}</p>
                       <Link to={`/countrydetail/${idparam}`} className={style.cardLinks}>
-                        <button className={style.infoButton}>More Info</button>
+                        <button className={style.infoButton}>MORE INFO</button>
                       </Link>
                     </div>
                     

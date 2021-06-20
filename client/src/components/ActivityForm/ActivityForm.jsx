@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addActivity } from '../../actions/index'
+import { addActivity, getAllCountries } from '../../actions/index'
 import style  from './ActivityForm.module.css'
 
 
@@ -14,7 +14,12 @@ function ActivityForm() {
         season: "",
         countries: []
       })
+
+    const [ showCountries, setShowCountries ] = useState([])
   
+    useEffect(() => {
+        dispatch(getAllCountries())    
+    }, [] )
       
     function handleChange (event) {
         setLocalstate({...localstate, [event.target.name]: event.target.value})
@@ -48,12 +53,18 @@ function ActivityForm() {
     
     }
 
+    
+
 
     return (
         <div>
-        
+            <div className={style.mainFormContainer}>
             <div className={style.formContainer}>
-                <h1>ADD ACTIVITIES</h1>
+
+                <div>
+                    <h1>ADD ACTIVITIES</h1>
+                </div>
+                
                 <form onSubmit={handleSubmit} className={style.form} >
                     <label>Name of the activity:</label>
                     <input onChange={handleChange} name="activityName"></input>
@@ -80,10 +91,20 @@ function ActivityForm() {
 
                 
             </div>
-         
+
+
+            <div className={style.showCountriesdiv}>
+                {localstate.countries !== 0 && 
+                    localstate.countries.map(el => 
+                        <div className={style.chosenCountry}>
+                            <p>{el}</p>
+                        </div>)     
+                }
+            </div>
+
+            </div>
         </div>
     )
-  
 };
 
 

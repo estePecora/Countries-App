@@ -1,0 +1,65 @@
+
+.orderContainer{
+    display: flex;
+    margin-bottom: 30px;
+}
+
+.orderMenu{
+    border-radius: 20px;
+    border-style: hidden;
+    padding: 8px;
+   
+}
+
+.orderButton{
+    border-radius: 50px;
+    border-style: hidden;
+    color:rgb(211, 211, 211);
+    font-size: 10px;
+    letter-spacing: 5px;
+    background-color:rgb(53, 86, 114);
+    padding: 8px 20px 8px 20px ;
+    margin-left: 10px;
+
+}
+
+.orderButton:hover {
+    background-color: grey;
+}
+
+.nextPrevDiv{
+    margin-top: 30px;
+}
+
+.nextPrev {
+    border-radius: 100px;
+    border-style: hidden;
+    color:rgb(211, 211, 211);
+    font-size: 10px;
+    letter-spacing: 5px;
+    background-color:rgb(53, 86, 114);
+    padding: 8px;
+    width: 80px;
+    margin: 5px;
+}
+
+.nextPrev:hover {
+    color: white;
+}
+
+.buttonFindCountries {
+    border-radius: 100px;
+    border-style: solid;
+    border-color:rgb(53, 86, 114);
+    background-color:rgba(211, 211, 211, 0);
+    font-size: 10px;
+    letter-spacing: 5px;
+    color:rgb(53, 86, 114);
+    padding: 8px 20px 8px 20px;
+
+}
+
+.buttonFindCountries:hover {
+    background-color:rgba(53, 86, 114, 0.801);
+    color:rgb(211, 211, 211);
+}

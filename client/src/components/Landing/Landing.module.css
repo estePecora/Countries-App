@@ -30,14 +30,12 @@
 }
 
 .imagButton {
-    background-color: rgba(255, 255, 255, 0);
+    background-color: rgb(53, 86, 114);
     color: rgb(255, 255, 255);
-    font-size: 20px;
+    font-size: 15px;
     letter-spacing: 5px;
     text-align: center;
-    border-width: 3px;
-    border-color: white;
-    border-style: solid;
+    border-style: hidden;
     border-radius: 50px;
     padding: 15px 40px 15px 40px;
   
@@ -45,4 +43,5 @@
 
 .imagButton:hover {
     background-color: rgba(255, 255, 255, 0.281);
+    color:rgb(53, 86, 114);
 }

@@ -1,0 +1,47 @@
+.filterlist {
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    min-height: 100%;
+    background-color: rgb(248, 248, 248);
+    
+}
+
+.filteroptionsContainer {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    padding: 30px;
+    margin-top: 200px;
+    text-align: left;
+    color:rgb(53, 86, 114)
+}
+
+.filterPagesButtons{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+
+}
+
+.filterPrevNext {
+    border-radius: 100px;
+    border-style: hidden;
+    color:rgb(211, 211, 211);
+    background-color:rgb(53, 86, 114);
+    width: 100px;
+    padding: 8px;
+
+}
+
+.filtercardContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    width: 900px;
+    margin-top: 100px;
+    padding: 10px;
+    
+}

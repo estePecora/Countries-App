@@ -24,7 +24,7 @@ const postActivity = async function (req, res) {
         }
             
 
-    res.send("Activity added")
+    res.status(200).send({message: "Activity added succesfully"})
 
 }
 

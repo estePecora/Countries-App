@@ -1,20 +1,63 @@
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import CountryCard from '../CountryCard/CountryCard'
 import style from './CountryList.module.css'
 
 function CountryList() {
    const allCountries = useSelector(state => state.listOfCountries)
-   const orderedCountries = useSelector(state => state.orderedCountries)
+   const setError = useSelector(state => state.setError)
+   const rendercountries = allCountries
+   
 
-   if (orderedCountries.length === 0) {
+   const [ currentPage, setPage ] = useState({
+    first: 0,
+    last: 10
+    })
+   
+  
+
+    function handleNextPage (event) {
+        event.preventDefault()
+        setPage({...currentPage, 
+            first: currentPage.first + 10,
+            last: currentPage.last + 10
+        })        
+    } 
+
+    function handlePrevPage (event) {
+        event.preventDefault()
+        if (currentPage.first === 0){
+            setPage({...currentPage, 
+                first: 0,
+                last: 10
+            })
+
+        } else {
+            setPage({...currentPage, 
+                first: currentPage.first - 10,
+                last: currentPage.last - 10
+            })
+        }
+      
+    } 
+
+    
+
     return (
         <div>
 
-            <div className={style.list}>    
-           
-                <div className={style.cardContainer}>
-                    {allCountries.map(el => {
-                        return <div> 
+            <div className={style.list}>   
+
+                    <div>
+                        <button onClick={handlePrevPage} >PREV</button>
+                        <button onClick={handleNextPage} >NEXT</button>
+                    </div>
+
+            <div className={style.cardContainer}>
+                    {   setError.message ? <div><h1>{setError.message}</h1></div>
+                        : rendercountries.length !== 0 && rendercountries.slice(currentPage.first, currentPage.last)
+                        .map(el => {
+                        return <div key={el.id}> 
                             <CountryCard
                                 id ={el.id}
                                 flagImag={el.flagImag}
@@ -23,35 +66,12 @@ function CountryList() {
                             />
                         </div>})
                     }
-                </div>
+                </div> 
                   
             </div>
                  
         </div>
     )
-
-   } else {
-       return (
-           <div>
-               <div className={style.list}>    
-           
-                    <div className={style.cardContainer}>
-                    {orderedCountries.map(el => {
-                        return <div> 
-                            <CountryCard
-                                id ={el.id}
-                                flagImag={el.flagImag}
-                                name={el.name}
-                                continent={el.continent}
-                            />
-                        </div>})
-                    }
-                    </div>
-             
-       </div>
-            </div>
-       )
-   }
     
 }
 
