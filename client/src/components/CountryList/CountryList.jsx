@@ -45,31 +45,29 @@ function CountryList() {
 
     return (
         <div>
+            <div className={style.mainListContainer}>
+            <div className={style.pagesbuttonsContainer}>
+                    <button onClick={handlePrevPage} className={style.pagesButtons}>PREV</button>
+                    <button onClick={handleNextPage} className={style.pagesButtons}>NEXT</button>
+            </div>
 
             <div className={style.list}>   
-
-                    <div>
-                        <button onClick={handlePrevPage} >PREV</button>
-                        <button onClick={handleNextPage} >NEXT</button>
-                    </div>
-
-            <div className={style.cardContainer}>
-                    {   setError.message ? <div><h1>{setError.message}</h1></div>
-                        : rendercountries.length !== 0 && rendercountries.slice(currentPage.first, currentPage.last)
-                        .map(el => {
-                        return <div key={el.id}> 
-                            <CountryCard
-                                id ={el.id}
-                                flagImag={el.flagImag}
-                                name={el.name}
-                                continent={el.continent}
-                            />
-                        </div>})
-                    }
-                </div> 
-                  
+                <div className={style.cardContainer}>
+                        {   setError.message ? <div><h1>{setError.message}</h1></div>
+                            : rendercountries.length !== 0 && rendercountries.slice(currentPage.first, currentPage.last)
+                            .map(el => {
+                            return <div key={el.id}> 
+                                <CountryCard
+                                    id ={el.id}
+                                    flagImag={el.flagImag}
+                                    name={el.name}
+                                    continent={el.continent}
+                                />
+                            </div>})
+                        }
+                    </div>   
             </div>
-                 
+            </div>       
         </div>
     )
     

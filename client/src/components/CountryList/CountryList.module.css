@@ -1,3 +1,11 @@
+.mainListContainer {
+    display: flex;
+    flex-direction: column;
+    width: 1000px;
+
+}
+
+
 .list {
     display: flex;
     flex-direction: row;
@@ -12,6 +20,30 @@
     align-content: center;
     justify-content: center;
     margin-right: 5%;
-    max-width: 100%;
     color: rgb(53, 86, 114);
+}
+
+.pagesbuttonsContainer {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    width: 100%;
+    height: 40px;
+    padding-left: 80px;
+}
+
+.pagesButtons {
+    border-radius: 50px;
+    border-style: hidden;
+    color:rgb(211, 211, 211);
+    font-size: 10px;
+    letter-spacing: 5px;
+    background-color:rgb(53, 86, 114);
+    padding: 8px 20px 8px 20px ;
+    margin-left: 10px;
+
+}
+
+.pagesButtons:hover {
+    color:rgb(255, 255, 255);
 }

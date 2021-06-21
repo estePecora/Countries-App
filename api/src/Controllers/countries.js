@@ -33,6 +33,7 @@ const getAPICountries = async function getAPICountries (req, res) {
         
 }
 
+
 const getAllCountries = async function getAllCountries (req, res) {
     try{
         const countryList = await Country.findAll({include: Activity})    
@@ -48,7 +49,10 @@ const getCountriesById =  async function getCountriesById (req, res) {
     const countryId = req.params.id.toUpperCase()
    
     try {
-        countrySelected = await Country.findOne({where: { id: countryId}, include: Activity })
+        countrySelected = await Country.findOne({
+            where: { id: countryId}, 
+            include: Activity 
+            })
         return res.status(200).json(countrySelected)
         
     }
@@ -56,9 +60,6 @@ const getCountriesById =  async function getCountriesById (req, res) {
     catch(error) {
         res.send(error)
     }
-
-
-  
 }
 
 
@@ -66,7 +67,8 @@ const getCountriesByName = async function getCountriesByName (req, res) {
     const countryname = req.params.name
    
     try{
-        countryFound = await Country.findAll({where: {name: {[Op.iLike]: '%'+countryname+'%'} }})   
+        countryFound = await Country.findAll({
+            where: {name: {[Op.iLike]: '%'+countryname+'%'} }})   
         if (countryFound.length !== 0) {
             return res.status(200).json(countryFound)
         } else { 
@@ -95,6 +97,20 @@ const orderCountries = async function orderCountries (req, res) {
         res.send(error)
     }  
 }
+
+
+
+module.exports = {
+    getAPICountries,
+    getAllCountries,
+    getCountriesById,
+    getCountriesByName,
+    orderCountries,
+
+}
+
+
+
 
 //----------------- RUTAS PAGINADO Y FILTRADO --------------------------------
 
@@ -157,17 +173,3 @@ const orderCountries = async function orderCountries (req, res) {
 //     }
         
 // };
-
-
-
-
-
-module.exports = {
-    getAPICountries,
-    getAllCountries,
-    getCountriesById,
-    getCountriesByName,
-    orderCountries,
-
- 
-}

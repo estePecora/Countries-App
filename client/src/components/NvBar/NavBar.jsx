@@ -8,7 +8,7 @@ export default function NavBar() {
         <div>
             <nav className={style.navbar}>
                 <div className={style.navtitle}>
-                    <NavLink exact to="/" ><h1>THE EXPLORER LOGO</h1></NavLink>
+                    <NavLink exact to="/" ><h1>THE EXPLORER</h1></NavLink>
                 </div>
                 
                     <ul className={style.list}>
@@ -16,7 +16,6 @@ export default function NavBar() {
                             <NavLink exact to="/home" >HOME</NavLink>
                             <NavLink to="/otherlist/filters/filter" >FILTER COUNTRIES</NavLink>
                             <NavLink to="/addactivities" >ADD ACTIVITIES</NavLink>
-                            {/* <NavLink to="/activities" >SEARCH ACTIVITIES</NavLink> */}
                         </li>
                     </ul>
             </nav>

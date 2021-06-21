@@ -14,6 +14,7 @@ export default function Landing() {
 
     return (
         <div>
+            <div className={style.landingImag}>
             <div className={style.mainBox}>
                 <div className={style.maintitleBox}>
                     <h1 className={style.mainTitle}>EPLORE THE WORLD THROUGH ADVENTURES</h1>
@@ -26,6 +27,8 @@ export default function Landing() {
                 </div>
                 
             </div>
+            </div>
+
         </div>
     )
 }

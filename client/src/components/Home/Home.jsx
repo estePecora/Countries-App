@@ -17,8 +17,7 @@ export default function Home() {
    
     return (
         <div>
-        
-                <div className={style.mainHomeContainer}>
+            <div className={style.mainHomeContainer}>
                     
                     <div className={style.optionsContainer}>
                         <div className={style.listTitleContainer}>
@@ -36,12 +35,12 @@ export default function Home() {
 
                     </div>
                     
+                    
                     <div className={style.listHomeContainer}>
                         <CountryList/>
                     </div>
 
-                </div>
-                 
+            </div>          
         </div>
     )
 }

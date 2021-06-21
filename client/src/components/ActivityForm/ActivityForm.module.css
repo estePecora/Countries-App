@@ -1,6 +1,12 @@
 .mainFormContainer {
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    background-image: url("../../images/scotland_photo-1451337.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
 }
 
 
