@@ -10,7 +10,7 @@
 - Usar y practicar testing.
 
 
-![Screenshot (186)](https://user-images.githubusercontent.com/77625247/127350237-a4862931-119d-4805-9b7a-677fe406fa99.png)
+![Screenshot (186)](https://user-images.githubusercontent.com/77625247/131026346-4008f1b5-4dbf-4404-8c93-bc38107c5799.png)
 
 ![Screenshot (368)](https://user-images.githubusercontent.com/77625247/131026189-49669f5b-5574-42e9-90b9-afa8c7fa8e29.png)
 
