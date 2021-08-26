@@ -1,13 +1,9 @@
 
-# Individual Project - Countries
+# Individual Project - Country Explorer
 
-## Objetivos del Proyecto
+### Technologies used to build this web application:
 
-- Construir una App utlizando React, Redux, Node y Sequelize.
-- Afirmar y conectar los conceptos aprendidos en la carrera.
-- Aprender mejores prácticas.
-- Aprender y practicar el workflow de GIT.
-- Usar y practicar testing.
+#### Node, Express, Sequelize, React, Redux, CSS
 
 
 ![Screenshot (186)](https://user-images.githubusercontent.com/77625247/131026346-4008f1b5-4dbf-4404-8c93-bc38107c5799.png)
